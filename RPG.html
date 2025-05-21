@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RPG Guerrero vs Dragón</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .battlefield {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      gap: 30px;
+    }
+
+    .character,
+    .dragon {
+      width: 150px;
+      height: 150px;
+      background-color: #444;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .bar {
+      height: 20px;
+      width: 100%;
+      background: #222;
+      border: 1px solid #555;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .bar-inner {
+      height: 100%;
+      background: limegreen;
+      width: 100%;
+    }
+
+    .controls button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 10px;
+      border: 4px solid rgb(49, 0, 105);
+    }
+
+    #log {
+      background: #222;
+      border: 1px solid #555;
+      padding: 10px;
+      margin-top: 20px;
+      height: 120px;
+      overflow-y: auto;
+    }
+
+    .escenario {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-image:
+        url(https://openclipart.org/image/800px/260886),
+        linear-gradient(skyblue 70%, rgb(104, 76, 1) 30%);
+      background-repeat: repeat-x;
+      background-size: 130px 120px, 100% 100%;
+
+      background-position: 0px 140px, top;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 20px;
+      border-radius: 40px;
+      border: 6px solid rgb(114, 114, 114);
+    }
+
+
+
+
+    .personaje {
+      width: 200px;
+      height: auto;
+      transform: scaleX(-1);
+    }
+
+    .personaje.reducir-idle {
+      transform: scaleX(-1) scale(0.4) !important;
+      /* Reducir el tamaño en estado idle */
+
+    }
+
+    .personaje.defendiendo {
+      transform: scaleX(-1) scale(1.2) translateY(-40px) !important;
+      transform-origin: bottom;
+    }
+
+    .personaje2 {
+      width: 310px;
+      height: auto;
+    }
+
+    .personaje2.atacando {
+      transform: scale(1.8) translateX(-90px);
+      /* Aumentar el tamaño durante el ataque */
+      transform-origin: bottom;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Kárate a Muerte en Torremolinos</h1>
+  <div class="battlefield">
+    <div class="character">
+      <strong>Guerrero</strong>
+      <div class="bar">
+        <div id="player-hp" class="bar-inner"></div>
+      </div>
+      <div><small>Pociones: <span id="potions">5</span></small></div>
+    </div>
+    <div class="escenario">
+      <img id="guerrero" class="personaje reducir-idle"
+        src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExemtvYm8zangybjMwY3JiZHBnczYwbGZhc2hyczR6bGw1ZG8zZm9iciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/pZMceal7Lo0sXkLOTf/giphy.gif"
+        alt="Guerrero">
+      <img id="dragon" class="personaje2"
+        src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2Vrd2ZxNXAxc3VqbnJ3Mjk1YjRna25weGtrMTk3NzQycDU4NWN0YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/sHsZvppC581TM7jlca/giphy.gif"
+        alt="Dragón">
+    </div>
+
+    <div class="dragon">
+      <strong>Enemigo</strong>
+      <div class="bar">
+        <div id="dragon-hp" class="bar-inner"></div>
+      </div>
+    </div>
+  </div>
+  <div class="controls">
+    <button style="background-color: rgb(255, 157, 157);
+    color:indigo; text-shadow:
+  1px 1px 2px red,
+  0 0 1em blue,
+  0 0 0.2em blue; font-weight: 999;" id="boton-ataque-guerrero" onclick="ataqueGuerrero(); attack()">Atacar</button>
+    <button style="background-color: rgb(189, 255, 189);
+    color:indigo; text-shadow:
+  1px 1px 2px rgb(0, 255, 0),
+  0 0 1em blue,
+  0 0 0.2em blue; font-weight: 999;" onclick="usePotion()">Usar Poción</button>
+    <button style="background-color: rgb(168, 191, 255);
+    color:indigo; text-shadow:
+  1px 1px 2px rgb(0, 217, 255),
+  0 0 1em blue,
+  0 0 0.2em blue; font-weight: 999;" onclick="defend()">Defender</button>
+  </div>
+  <div id="log"></div>
+  <button style="background-color: rgb(248, 255, 157);
+    color:indigo; text-shadow:
+  1px 1px 2px rgb(255, 196, 0),
+  0 0 1em rgb(200, 255, 0),
+  0 0 0.2em rgb(255, 136, 0); font-weight: 999; margin: 20px 0 20px 0;" onclick="location.reload()">Reiniciar combate
+  </button>
+
+  <aside>
+    <h3 style="margin: 0;">Instrucciones:</h3><br>
+    <p style="margin: 0;"><Strong>Atacar:</Strong> haces daño moderado y el enemigo también te atacará a la vez, con daño moderado, pero hay un 50% de probabilidad de que haga un ataque cargado que hace el doble de daño. <br> <br>
+    <strong>Usar poción:</strong> gastas una poción para curar algo de vida aleatoriamente. <strong>(Indicador debajo de la vida del Guerrero)</strong> <br> <br>
+    <strong>Defender:</strong> Intentas bloquear y contra atacar al oponente. Si hace un ataque normal, recibes todo el daño y devuelve 1 punto de daño. Si es un ataque fuerte, no recibes daño y devuelves x3 de lo que te iba a hacer.
+    </p>
+  </aside>
+
+
+  <script>
+    let playerHP = 100;
+    let dragonHP = 150;
+    let potions = 5;
+    let isDefending = false;
+
+    function updateBars() {
+      document.getElementById('player-hp').style.width = playerHP + '%';
+      document.getElementById('dragon-hp').style.width = dragonHP / 1.5 + '%';
+      document.getElementById('potions').textContent = potions;
+    }
+
+    function log(msg) {
+      const logBox = document.getElementById('log');
+      logBox.innerHTML = msg + '<br>' + logBox.innerHTML;
+    }
+
+    function attack() {
+      const dmg = Math.floor(Math.random() * 20) + 10;
+      dragonHP = Math.max(dragonHP - dmg, 0);
+      log(`<hr>Atacaste al dragón e hiciste ${dmg} de daño.`);
+      dragonTurn();
+      updateBars();
+    }
+
+    function usePotion() {
+      if (potions <= 0) {
+        log('No te quedan pociones.');
+        return;
+      }
+      const heal = Math.floor(Math.random() * 20) + 5;
+      playerHP = Math.min(playerHP + heal, 100);
+      potions--;
+      log(`Usaste una poción y recuperaste ${heal} de vida.`);
+      updateBars();
+    }
+
+    function defend() {
+      const dragon = document.getElementById('dragon');
+      const guerrero = document.getElementById('guerrero');
+      const guerreroRect = guerrero.getBoundingClientRect();
+      isDefending = true;
+      guerrero.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExenJ3OXViaGUzMmFxYmJmeWp4ZW5nNHI4NDQ4aTVrd3BqcGR2NnFzMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/R2JejaVIAqc5G21mVw/giphy.gif";
+      guerrero.classList.add('defendiendo');
+
+      setTimeout(() => {
+        guerrero.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExemtvYm8zangybjMwY3JiZHBnczYwbGZhc2hyczR6bGw1ZG8zZm9iciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/pZMceal7Lo0sXkLOTf/giphy.gif"; // Volver al GIF de idle después de la duración de la defensa
+        guerrero.classList.remove('defendiendo');
+      }, 2500); // Duración de la animación de defensa (coincide con la duración del GIF)
+      log('Te preparas para defender el siguiente ataque.');
+      dragonTurn();
+      updateBars();
+    }
+
+    function dragonTurn() {
+      const dragon = document.getElementById('dragon');
+      if (dragonHP <= 0) {
+        log('<strong>¡Has derrotado al dragón!</strong>');
+        return;
+      }
+      // Iniciar animación de ataque del dragón
+      dragon.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzFnbnNkNGd6bGptM2xuMjl1ODB3Z255dGwxZzd5YmNxbnMwZTA2bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ByKdTPqEnzn1e/giphy.gif";
+      dragon.classList.add('atacando');
+
+      setTimeout(() => {
+        // Volver al estado idle del dragón después de la animación de ataque
+        dragon.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2Vrd2ZxNXAxc3VqbnJ3Mjk1YjRna25weGtrMTk3NzQycDU4NWN0YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/sHsZvppC581TM7jlca/giphy.gif";
+        dragon.classList.remove('atacando');
+
+        const action = Math.random() < 0.5 ? 'normal' : 'charged'; /* probabilidad del ataque cargado 50% */
+        let dmg = 0;
+
+        if (action === 'normal') {
+          dmg = Math.floor(Math.random() * 20) + 5;
+          log(`<hr>El dragón ataca y hace ${dmg} de daño.<hr>`);
+          if (isDefending) {
+            playerHP--;
+            dragonHP = Math.max(dragonHP - (dmg * 3), 0); // El dragón recibe daño si el jugador defiende un ataque normal
+            log(`Bloqueaste el ataque (-1HP) y el dragón recibió ${dmg * 3} de daño.`);
+            isDefending = false;
+          } else {
+            playerHP = Math.max(playerHP - dmg, 0);
+          }
+        } else {
+          dmg = (Math.floor(Math.random() * 15) + 5) * 2; // El daño cargado es el doble
+          log(`<hr><strong>¡El dragón lanza un ataque cargado! Hace ${dmg} de daño.</strong><hr>`);
+          if (isDefending) {
+            playerHP = Math.max(playerHP - dmg * 2, 0); // Recibe el doble de daño si defiende contra un ataque cargado
+            log(`<strong>¡No pudiste bloquear el ataque cargado! Recibiste ${dmg * 2} de daño.</strong>`);
+            dragonHP = Math.max(dragonHP - 5, 0); // El dragón recibe un poco de daño
+            log(`El enemigo recibe 5 de daño.<hr>`);
+            isDefending = false;
+          } else {
+            playerHP = Math.max(playerHP - dmg, 0);
+          }
+        }
+
+        if (playerHP <= 0) {
+          log('<strong>¡Has sido derrotado!</strong>');
+          disableControls();
+        }
+        updateBars();
+
+      }, 3000); // Duración estimada de la animación de ataque del dragón
+    }
+
+
+    if (playerHP <= 0) {
+      log('<strong>¡Has sido derrotado!</strong>');
+      disableControls();
+    }
+
+
+    function disableControls() {
+      document.querySelectorAll('.controls button').forEach(btn => btn.disabled = true);
+    }
+
+    updateBars();
+
+
+    // aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    const ataqueGuerreroBoton = document.getElementById('boton-ataque-guerrero');
+
+    function ataqueGuerrero() {
+      if (ataqueGuerreroBoton.disabled) {
+        return; // Si el botón está deshabilitado, no hacer nada
+      }
+      ataqueGuerreroBoton.disabled = true; // Deshabilitar el botón al iniciar el ataque
+
+      const guerrero = document.getElementById('guerrero');
+      const dragon = document.getElementById('dragon');
+
+      const guerreroRect = guerrero.getBoundingClientRect();
+      const dragonRect = dragon.getBoundingClientRect();
+      const distancia = dragonRect.left - guerreroRect.left - 350;
+
+      // Función para cambiar a estado idle y aplicar la clase de reducción
+      const volverAIdle = () => {
+        guerrero.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExemtvYm8zangybjMwY3JiZHBnczYwbGZhc2hyczR6bGw1ZG8zZm9iciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/pZMceal7Lo0sXkLOTf/giphy.gif";
+        guerrero.style.transition = "none";
+        guerrero.classList.add('reducir-idle');
+        // Habilitar el botón al volver a idle
+        ataqueGuerreroBoton.disabled = false;
+
+      };
+
+      // 🔁 Estado inicial: idle mirando a la derecha
+      // No llamamos a volverAIdle() aquí inmediatamente.
+      guerrero.style.transform = `translateX(0) scaleX(-1)`; // Establecemos la dirección inicial correcta
+
+
+      // 1. Cambiar animación a dash (sin voltearse aún)
+      guerrero.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWxxazBnNDdmYnJ4NTd4NHNkbzkxZjJqMWhoZHg2MXhib25kZ3l2YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/LDK9HURWHC73zmKQ88/giphy.gif";
+      guerrero.classList.remove('reducir-idle'); // Removemos la clase al iniciar el movimiento
+
+      // 1. Inmediatamente antes de cambiar de dirección
+      guerrero.style.transition = "none"; // desactiva transición para que no se anime el giro
+      guerrero.style.transform = `translateX(0) scaleX(-1)`; // Aseguramos que siga mirando a la derecha al inicio del dash
+
+      // 2. Luego, activa transición solo para mover después de 0.5 segundos
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          guerrero.style.transition = "transform 1s linear"; // solo afectará al movimiento
+          guerrero.style.transform = `translateX(${distancia}px) scaleX(-1)`; // se mueve sin girar
+          guerrero.addEventListener('transitionend', onLlegada);
+        }, 800); // Espera 0.5 segundos
+      });
+
+
+      const onLlegada = () => {
+        guerrero.removeEventListener('transitionend', onLlegada);
+
+        // 2. Animación de ataque
+        guerrero.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGp2ZTR5c3hzaHdsOGF0YTQ2djNoaGVybTRzOTk4azdpdThxaGlmZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/7520qFULuAK8JK0B6S/giphy.gif";
+
+        setTimeout(() => {
+          // 3. Cambiar a dash para volver (primero girar)
+          guerrero.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWxxazBnNDdmYnJ4NTd4NHNkbzkxZjJqMWhoZHg2MXhib25kZ3l2YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/LDK9HURWHC73zmKQ88/giphy.gif";
+          guerrero.style.transition = "none"; // Desactivar transición antes del cambio de escala
+          guerrero.style.transform = `translateX(${distancia}px) scaleX(1)`; // Girar mirando izquierda
+          guerrero.classList.remove('reducir-idle'); // Removemos la clase al iniciar el movimiento de vuelta
+
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              guerrero.style.transition = "transform 1s linear"; // Reactivar transición para el movimiento de regreso
+              guerrero.style.transform = `translateX(0) scaleX(1)`; // Se mueve de vuelta mirando izquierda
+              guerrero.addEventListener('transitionend', onRegreso);
+            }, 500); // Espera 0.5 segundos antes de volver
+          });
+        }, 2000); // duración estimada del ataque
+      };
+
+      const onRegreso = () => {
+        guerrero.removeEventListener('transitionend', onRegreso);
+        volverAIdle(); // Volver a estado idle y aplicar la reducción
+      };
+    }
+
+
+
+
+  </script>
+
+</body>
+
+</html>
