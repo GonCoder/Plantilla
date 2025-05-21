@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RPG Guerrero vs Dragón</title>
+  <title>RPG Guerrero vs Enemigo</title>
   <style>
     body {
       background: #111;
@@ -136,7 +136,7 @@
         alt="Guerrero">
       <img id="dragon" class="personaje2"
         src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2Vrd2ZxNXAxc3VqbnJ3Mjk1YjRna25weGtrMTk3NzQycDU4NWN0YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/sHsZvppC581TM7jlca/giphy.gif"
-        alt="Dragón">
+        alt="Enemigo">
     </div>
 
     <div class="dragon">
@@ -200,7 +200,7 @@
     function attack() {
       const dmg = Math.floor(Math.random() * 20) + 10;
       dragonHP = Math.max(dragonHP - dmg, 0);
-      log(`<hr>Atacaste al dragón e hiciste ${dmg} de daño.`);
+      log(`<hr>Atacaste al enemigo e hiciste ${dmg} de daño.`);
       dragonTurn();
       updateBars();
     }
@@ -237,7 +237,7 @@
     function dragonTurn() {
       const dragon = document.getElementById('dragon');
       if (dragonHP <= 0) {
-        log('<strong>¡Has derrotado al dragón!</strong>');
+        log('<strong>¡Has derrotado al enemigo!</strong>');
         return;
       }
       // Iniciar animación de ataque del dragón
@@ -254,18 +254,18 @@
 
         if (action === 'normal') {
           dmg = Math.floor(Math.random() * 20) + 5;
-          log(`<hr>El dragón ataca y hace ${dmg} de daño.<hr>`);
+          log(`<hr>El enemigo ataca y hace ${dmg} de daño.<hr>`);
           if (isDefending) {
             playerHP--;
             dragonHP = Math.max(dragonHP - (dmg * 3), 0); // El dragón recibe daño si el jugador defiende un ataque normal
-            log(`Bloqueaste el ataque (-1HP) y el dragón recibió ${dmg * 3} de daño.`);
+            log(`Bloqueaste el ataque (-1HP) y el enemigo recibió ${dmg * 3} de daño.`);
             isDefending = false;
           } else {
             playerHP = Math.max(playerHP - dmg, 0);
           }
         } else {
           dmg = (Math.floor(Math.random() * 15) + 5) * 2; // El daño cargado es el doble
-          log(`<hr><strong>¡El dragón lanza un ataque cargado! Hace ${dmg} de daño.</strong><hr>`);
+          log(`<hr><strong>¡El enemigo lanza un ataque cargado! Hace ${dmg} de daño.</strong><hr>`);
           if (isDefending) {
             playerHP = Math.max(playerHP - dmg * 2, 0); // Recibe el doble de daño si defiende contra un ataque cargado
             log(`<strong>¡No pudiste bloquear el ataque cargado! Recibiste ${dmg * 2} de daño.</strong>`);
