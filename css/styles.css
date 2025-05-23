@@ -75,6 +75,11 @@ main {
   text-align: center;
 }
 
+.contenedorEjercicios button {
+  margin: 10px;
+  padding: 5px;
+}
+
 .troll {
   position: fixed;
   top: 3%;
@@ -101,9 +106,10 @@ main {
 
 
 footer {
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   width: 100%;
+  
 }
 
 

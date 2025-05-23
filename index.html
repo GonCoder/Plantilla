@@ -16,7 +16,7 @@
       <h1 class="text-center">Gonzalo Capel de la Torre</h1>
       <nav class="nav justify-content-center">
         <a class="nav-link" href="https://theuselessweb.com/">🏠Inicio🏡</a>
-        <a class="nav-link" href="https://hackertyper.com/">🐲No sé🧙‍♂️</a>
+        <a class="nav-link" href="https://hackertyper.com/">🐲Hack Time🧙‍♂️</a>
         <a class="nav-link"
           href="mailto:gonzalocapeldelat@gmail.com?subject=Consulta&body=Hola,%20tengo%20una%20pregunta.">📲Contacto👨‍💻</a>
         <a class="nav-link" href="https://play2048.co/">🕹️Un jueguecillo bastante gracioso🎮</a>
@@ -37,9 +37,14 @@
         <br> No planeo hacer unas hojas de estilo o js para el RPG para no
         llenar la plantilla con cosas ajenas a los ejercicios.
         <br> Prefiero mantener un poco de orden por objetivos y que vosotros podáis acceder rápidamente a los
-        ejercicios. 
+        ejercicios.
         <br> Es decir, ya sé que no es correcto vomitar el spagetti🤌🏻 en un archivo HTML.
       </p>
+
+      <!-- Botón para cambiar vista -->
+      <button id="cambiarVistaBtn" class="btn btn-secondary mb-3">
+        Ver Ejercicios
+      </button>
 
       <!-- <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <div class="col">
@@ -74,38 +79,40 @@
             </div>
           </div>
         </div> -->
-
-        <div class="col">
-          <div class="card bg-dark text-light h-100">
-            <div class="card-body">
-              <h5 class="card-title">Ejercicio 4</h5>
-              <p class="card-text">Haz clic en el enlace para ver el ejercicio 4 <br> <a href="ex4/ex4.html"
-                  target="_blank">Este es el enlace, sip puedes hacer clic aquí.</a></p>
+      <div id="ejerciciosActuales" >
+        <h3>↓ Últimos Ejercicios ↓</h3>
+        <div>
+          <div class="col">
+            <div class="card bg-dark text-light h-100">
+              <div class="card-body">
+                <h5 class="card-title">Ejercicio 4</h5>
+                <p class="card-text">Haz clic en el enlace para ver el ejercicio 4 <br> <a href="ex4/ex4.html"
+                    target="_blank">Este es el enlace, sip puedes hacer clic aquí.</a></p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col">
-          <div class="card bg-dark text-light h-100">
-            <div class="card-body">
-              <h5 class="card-title">Ejercicio 5</h5>
-              <p class="card-text">Haz clic en el enlace para ver el ejercicio 5 <br> <a href="ex5/ex5.html"
-                  target="_blank">Hazme clic soy toda tuya</a></p>
+          <div class="col">
+            <div class="card bg-dark text-light h-100">
+              <div class="card-body">
+                <h5 class="card-title">Ejercicio 5</h5>
+                <p class="card-text">Haz clic en el enlace para ver el ejercicio 5 <br> <a href="ex5/ex5.html"
+                    target="_blank">Hazme clic soy toda tuya</a></p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col">
-          <div class="card bg-dark text-light h-100">
-            <div class="card-body">
-              <h5 class="card-title">Ejercicio 6</h5>
-              <p class="card-text">Haz clic en el enlace para ver el ejercicio 6<br> <a href="ex6/ex6.html"
-                  target="_blank">Obviamente</a></p>
+          <div class="col">
+            <div class="card bg-dark text-light h-100">
+              <div class="card-body">
+                <h5 class="card-title">Ejercicio 6</h5>
+                <p class="card-text">Haz clic en el enlace para ver el ejercicio 6<br> <a href="ex6/ex6.html"
+                    target="_blank">Obviamente</a></p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- <div class="col"> 
+          <!-- <div class="col"> 
           <div class="card bg-dark text-light h-100">
             <div class="card-body">
               <h5 class="card-title">Ejercicio 7</h5>
@@ -114,6 +121,17 @@
             </div>
           </div>
         </div> -->
+        </div>
+      </div>
+      </div>
+      <!-- Contenedor con nuevos botones (oculto por defecto) -->
+      <div id="contenedorBotonesEjercicios" style="display: none" class="contenedorEjercicios">
+        <button class="btn btn-outline-light" onclick="window.alert('Perdí el HTML de este ejercicio 🤣 Lo siento >.<')">Ver Ejercicio 1</button>
+        <button class="btn btn-outline-light" onclick="window.alert('Perdí el HTML de este ejercicio 🤣 Lo siento >.<')">Ver Ejercicio 2</button>
+        <button class="btn btn-outline-light" onclick="window.alert('Perdí el HTML de este ejercicio 🤣 Lo siento >.<')">Ver Ejercicio 3</button>
+        <button class="btn btn-outline-light" onclick="window.open('ex4/ex4.html', '_blank')">Ver Ejercicio 4</button>
+        <button class="btn btn-outline-light" onclick="window.open('ex5/ex5.html', '_blank')">Ver Ejercicio 5</button>
+        <button class="btn btn-outline-light" onclick="window.open('ex6/ex6.html', '_blank')">Ver Ejercicio 6</button>
       </div>
 
     </section>
@@ -133,6 +151,7 @@
     </a>
   </div>
 
+  <script src="js/plantilla-script.js"></script>
 </body>
 
 </html>
