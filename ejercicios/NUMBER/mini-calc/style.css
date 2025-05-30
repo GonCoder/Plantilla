@@ -1,0 +1,24 @@
+input {
+    background-color: rgb(0, 61, 61);
+    border: 2px solid grey;
+    color: aqua;
+    font-weight: 999;
+}
+label {
+    background-color: rgba(0, 255, 255, 0.24);
+    border: dotted 2px rgba(128, 128, 128, 0.219);
+    color: aqua;
+    font-weight: 999;
+    border-radius: 8px;
+}
+
+.lineaDeLaVagueza{
+    background-color: rgba(0, 255, 255, 0.24);
+    border: dotted 2px rgba(128, 128, 128, 0.219);
+    color: aqua;
+    font-weight: 999;
+    border-radius: 8px;
+    display: inline;
+    width: 10px;
+    margin: 0 30px 0 30px;
+}

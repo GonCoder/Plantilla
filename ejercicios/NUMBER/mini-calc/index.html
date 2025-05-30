@@ -8,6 +8,7 @@
   <title>NUMBER - Mini Calculadora</title>
   <link rel="stylesheet" href="../../../css/styles.css">
   <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="style.css">
   <script src="./js/script.js" defer></script>
 </head>
 
@@ -42,10 +43,11 @@
             <legend>Operaciones</legend>
             <label for="op1">Operando 1:</label>
             <input type="text" name="op1" id="op1" value="">
+            <p class="lineaDeLaVagueza">---------------------------------</p>
 
             <label for="op2">Operando 2:</label>
             <input type="text" name="op2" id="op2" value="">
-
+            <br><br>
             <input id="sumar" type="button" value="+">&nbsp;&nbsp;
             <input id="restar" type="button" value="-">&nbsp;&nbsp;
             <input id="multiplicar" type="button" value="*">&nbsp;&nbsp;
@@ -54,7 +56,7 @@
             <input id="decimal" type="button" value="._">&nbsp;&nbsp;
             <input id="raiz" type="button" value="&Sqrt;">&nbsp;&nbsp;
             <input id="factorial" type="button" value="!">&nbsp;&nbsp;
-            <input id="logaritmo" type="button" value="">&nbsp;&nbsp;
+            <input id="logaritmo" type="button" value="log">&nbsp;&nbsp;
           </fieldset>
           <p><span id="texto"><strong id="resultado"></strong></span></p>
         </div>
