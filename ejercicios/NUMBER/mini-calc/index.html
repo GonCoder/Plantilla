@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../../../css/styles.css">
   <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="style.css">
+  <script src="../js/validar.js" type="text/javascript" defer></script>
   <script src="./js/script.js" defer></script>
 </head>
 
@@ -48,17 +49,23 @@
             <label for="op2">Operando 2:</label>
             <input type="text" name="op2" id="op2" value="">
             <br><br>
-            <input id="sumar" type="button" value="+">&nbsp;&nbsp;
-            <input id="restar" type="button" value="-">&nbsp;&nbsp;
-            <input id="multiplicar" type="button" value="*">&nbsp;&nbsp;
-            <input id="dividir" type="button" value="/">&nbsp;&nbsp;
-            <input id="entera" type="button" value="_.">&nbsp;&nbsp;
-            <input id="decimal" type="button" value="._">&nbsp;&nbsp;
-            <input id="raiz" type="button" value="&Sqrt;">&nbsp;&nbsp;
-            <input id="factorial" type="button" value="!">&nbsp;&nbsp;
-            <input id="logaritmo" type="button" value="log">&nbsp;&nbsp;
+             <input class="btn-operacion" type="button" value="+" data-op="+">&nbsp;&nbsp;
+            <input class="btn-operacion"  type="button" value="-" data-op="-">&nbsp;&nbsp;
+            <input class="btn-operacion" type="button" value="*" data-op="*">&nbsp;&nbsp;
+            <input class="btn-operacion" type="button" value="/" data-op="/">&nbsp;&nbsp;
+            <input class="btn-operacion"type="button" value="_." data-op="_.">&nbsp;&nbsp;
+            <input class="btn-operacion" type="button" value="._" data-op="._">&nbsp;&nbsp;
+            <input class="btn-operacion" type="button" value="&Sqrt;" data-op="raiz">&nbsp;&nbsp;
+            <input class="btn-operacion" type="button" value="log(10)" data-op="log10">&nbsp;&nbsp;
+            <input class="btn-operacion"type="button" value="log(e)" data-op="loge">&nbsp;&nbsp;
+            <input class="btn-operacion"type="button" value="log(n)" data-op="logn">&nbsp;&nbsp;
+            <input class="btn-operacion" type="button" value="🎲" data-op="aleatorio">&nbsp;&nbsp;
+            <input class="btn-operacion"type="button" value="[🎲]" data-op="aleatorio-rango">&nbsp;&nbsp;
+            <input class="btn-operacion"type="button" value="🔁" data-op="intercambiar">&nbsp;&nbsp;
+            <input class="btn-operacion" type="button" value="[a...b]" data-op="aleatorio-letram">&nbsp;&nbsp;
+            <input class="btn-operacion" type="button" value="[A...B]" data-op="aleatorio-letraM">&nbsp;&nbsp;
           </fieldset>
-          <p><span id="texto"><strong id="resultado"></strong></span></p>
+          <p><span id="texto"></span><strong id="resultado"></strong></p>
         </div>
       </div>
     </div>
