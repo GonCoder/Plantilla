@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="La Plantilla en HTML5">
+  <title>NUMBER - Mini Calculadora</title>
+  <link rel="stylesheet" href="../../../css/styles.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="./js/script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h3>Ejemplos – FUNDAMENTOS DE JS (ES6)</h3>
+      <h4>Desarrollo WEB en entorno cliente</h4>
+      <h5>Plantilla</h5>
+    </div>
+    <div class="header-profile">
+      <img src="../../../img/KEKW.png" alt="Foto de perfil" />
+    </div>
+  </header>
+
+  <!-- Menú de navegación -->
+  <nav>
+    <ul class="navbar">
+      <li><a href="https://www.w3schools.com/js/default.asp">w3schools</a></li>
+      <li><a href="https://es.javascript.info/js">javascript.info</a></li>
+      <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript">MDN</a></li>
+    </ul>
+  </nav>
+
+ <main>
+  <section class="calculator-container">
+    <fieldset>
+      <legend>Calculadora Estilo iOS</legend>
+      <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+          <button class="btn light" onclick="resetCalculator()">AC</button>
+          <button class="btn light" onclick="deleteLast()">⌫</button>
+          <button class="btn light" onclick="applyPercentage()">%</button>
+          <button class="btn orange" onclick="appendOperator('/')">÷</button>
+
+          <button class="btn dark" onclick="appendNumber('7')">7</button>
+          <button class="btn dark" onclick="appendNumber('8')">8</button>
+          <button class="btn dark" onclick="appendNumber('9')">9</button>
+          <button class="btn orange" onclick="appendOperator('*')">×</button>
+
+          <button class="btn dark" onclick="appendNumber('4')">4</button>
+          <button class="btn dark" onclick="appendNumber('5')">5</button>
+          <button class="btn dark" onclick="appendNumber('6')">6</button>
+          <button class="btn orange" onclick="appendOperator('-')">−</button>
+
+          <button class="btn dark" onclick="appendNumber('1')">1</button>
+          <button class="btn dark" onclick="appendNumber('2')">2</button>
+          <button class="btn dark" onclick="appendNumber('3')">3</button>
+          <button class="btn orange" onclick="appendOperator('+')">+</button>
+
+          <button class="btn dark wide" onclick="appendNumber('0')">0</button>
+          <button class="btn dark" onclick="appendNumber('.')">.</button>
+          <button class="btn orange" onclick="computeResult()">=</button>
+        </div>
+      </div>
+    </fieldset>
+  </section>
+</main>
+
+
+  <!-- Pie de página -->
+  <footer>
+    © Gonzalo Capel de la Torre ☺
+  </footer>
+</body>
+
+</html>
