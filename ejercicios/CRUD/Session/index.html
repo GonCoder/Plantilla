@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="La Plantilla en HTML5">
+  <title>CRUD Session</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../css/styles.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="./js/grabarDato.js" defer></script>
+  <script src="./js/actualizarDato.js" defer></script>
+  <script src="./js/borrarDato.js" defer></script>
+  <script src="./js/mostrarDatos.js" defer></script>
+  <script src="./js/script.js" defer></script>
+
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h3>Ejemplos – FUNDAMENTOS DE JS (ES6)</h3>
+      <h4>Desarrollo WEB en entorno cliente</h4>
+      <h5>Plantilla</h5>
+    </div>
+    <div class="header-profile">
+      <img src="../../../img/KEKW.png" alt="Foto de perfil" />
+    </div>
+  </header>
+
+  <!-- Menú de navegación -->
+  <nav>
+    <ul class="navbar">
+      <li><a href="https://www.w3schools.com/js/default.asp">w3schools</a></li>
+      <li><a href="https://es.javascript.info/js">javascript.info</a></li>
+      <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript">MDN</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contenido principal de la página -->
+  <main>
+    <div class="container">
+      <div class="card">
+        <div class="cardTitle">CRUD - Session</div>
+        <div id="specialBackground" class="cardBody">
+          <fieldset>
+            <legend>Guardar nombre y valor</legend>
+            <table>
+              <thead>
+                <tr>
+                  <th><label for="">Introduce un nombre</label></th>
+                  <th><label for="">Introduce un valor</label></th>
+                </tr>
+                <tr>
+                  <th><input type="text" id="nombre" class="nombre" name="nombre" size="15" placeholder="Escribe un nombre"></th>
+                  <th><input type="text" id="valor" class="valor" name="valor" size="15" placeholder="Escribe un valor"></th>
+                  <th><button type="button" id="guardar">Guardar <img src="img/guardar.png" alt=""></button></th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo">
+
+              </tbody>
+            </table>
+
+          </fieldset>
+
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    © Gonzalo Capel de la Torre ☺<br>
+    <a href="../../../index.html">🏠Volver a la página principal🏡</a>
+  </footer>
+</body>
+
+</html>
